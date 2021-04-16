@@ -34,5 +34,6 @@ def main():
     print(grid.solved_count)
     pprint(grid.grid)
 
+
 if __name__ == "__main__":
     main()
