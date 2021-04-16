@@ -1,5 +1,4 @@
 from sudoku_grid import Grid, set_puzzle
-from pprint import pprint
 
 
 def eliminate_illegal(grid):
@@ -14,20 +13,23 @@ def eliminate_illegal(grid):
             if cell.is_solved is True:
                 continue
             eliminate_boxes(
+                grid=grid,
                 cell=cell,
                 row=row,
                 col=col)
             eliminate_rows(
+                grid=grid,
                 cell=cell,
                 row=row
             )
             eliminate_cols(
+                grid=grid,
                 cell=cell,
                 col=col
             )
 
 
-def eliminate_boxes(cell, row, col):
+def eliminate_boxes(grid, cell, row, col):
     nums_to_be_removed = []
     valid_nums = cell.possible_numbers
     for num in valid_nums:
@@ -42,7 +44,7 @@ def eliminate_boxes(cell, row, col):
         cell.possible_numbers.remove(num)
 
 
-def eliminate_rows(cell, row):
+def eliminate_rows(grid, cell, row):
     nums_to_be_removed = []
     valid_nums = cell.possible_numbers
     for num in valid_nums:
@@ -56,7 +58,7 @@ def eliminate_rows(cell, row):
         cell.possible_numbers.remove(num)
 
 
-def eliminate_cols(cell, col):
+def eliminate_cols(grid, cell, col):
     nums_to_be_removed = []
     valid_nums = cell.possible_numbers
     for num in valid_nums:
@@ -156,15 +158,3 @@ def solve_flow(grid, prev_grid=[]):
         return solve_flow(grid, prev_grid)
     except RecursionError:
         return False
-
-
-if __name__ == "__main__":
-    grid = Grid()
-    set_puzzle(grid, difficulty="medium")
-    pprint(grid.grid)
-    if solve_flow(grid):
-        print("SOLVED!")
-    else:
-        print("COULD NOT SOLVE :(")
-    print(grid.solved_count)
-    pprint(grid.grid)
