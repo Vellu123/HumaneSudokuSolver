@@ -10,3 +10,7 @@ These techniques can solve easy and some medium sudoku puzzles.
     1. `python run_solver.py -d easy`
     1. `python run_solver.py -d medium`
 
+### Methods
+The solver has the following flow:
+1. `solve_eliminate()`: Recursively looks for cells with only one possible move by eliminating illegal moves (no same number in a row, column or box)
+2. `solve_unique_possible()`: In a box with multiple unsolved cells, this method checks at the cells' possible moves, and if there is a possible move which can only be done in one cell, we have found a solution.
