@@ -1,6 +1,3 @@
-from sudoku_grid import Grid, set_puzzle
-
-
 def eliminate_illegal(grid):
     """
     Checks every cell and removes the not valid numbers
